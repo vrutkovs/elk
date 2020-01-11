@@ -3,7 +3,7 @@
     <b-button
       v-on:click="$emit('job-selected', id)"
       :pressed.sync="pressed"
-      variant="success"
+      variant="secondary"
     >{{ title }}</b-button>
   </div>
 </template>

@@ -1,10 +1,9 @@
 <template>
-  <div>
-    <b-button
-      v-on:click="$emit('job-run-selected', id)"
-      :variant="success ? 'success' : 'danger'"
-    >{{ id }}</b-button>
-  </div>
+  <b-button
+    v-on:click="$emit('job-run-selected', id)"
+    :variant="success ? 'success' : 'danger'"
+    disabled
+  >{{ id }}</b-button>
 </template>
 <script>
 export default {

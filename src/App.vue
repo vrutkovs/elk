@@ -31,8 +31,6 @@ export default {
   },
   methods: {
     onJobSelected: function (id) {
-      /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
-      console.warn("app: job '" + id + "' selected")
       this.id = id
     }
   }

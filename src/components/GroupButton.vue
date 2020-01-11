@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <b-button
-      v-on:click="$emit('group-selected', id)"
-      :pressed.sync="pressed"
-      variant="primary"
-    >{{ title }}</b-button>
-  </div>
+  <b-button
+    v-on:click="$emit('group-selected', id)"
+    :pressed.sync="pressed"
+    variant="primary"
+  >{{ title }}</b-button>
 </template>
 <script>
 export default {

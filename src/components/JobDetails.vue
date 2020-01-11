@@ -8,13 +8,15 @@
       <div v-if="loading">Loading...</div>
 
       <div v-else>
-        <JobRunButton
-          v-for="(jb, idx) in job_info"
-          v-bind:key="idx"
-          v-bind:id="jb.id"
-          v-bind:success="jb.success"
-          v-on:job-run-selected="onJobRunSelected"
-        />
+        <b-button-group vertical>
+          <JobRunButton
+            v-for="(jb, idx) in job_info"
+            v-bind:key="idx"
+            v-bind:id="jb.id"
+            v-bind:success="jb.success"
+            v-on:job-run-selected="onJobRunSelected"
+          />
+        </b-button-group>
       </div>
     </section>
   </div>
@@ -40,8 +42,6 @@ export default {
       .then(response => {
         response.data.forEach(v => {
           var url = 'http://localhost:3000/job/'+this.id+'/'+v
-          /* eslint no-console: ["error", { allow: ["warn"] }] */
-          console.warn("Fetching " + url)
           this.axios
             .get(url)
             .then(response => {
