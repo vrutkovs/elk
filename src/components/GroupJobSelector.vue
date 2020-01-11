@@ -56,8 +56,6 @@ export default {
   },
   methods: {
     onGroupSelected: function (id) {
-      /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
-      console.warn("Group '" + id + "' selected")
       this.jobs = [
         {
           id: 'release-openshift-ocp-installer-e2e-aws-4.1',
@@ -66,8 +64,6 @@ export default {
       ]
     },
     onJobSelected: function (id) {
-      /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
-      console.warn("selector: job '" + id + "' selected")
       this.$emit('job-selected', id)
     }
   }
