@@ -58,8 +58,8 @@ export default {
     onGroupSelected: function (id) {
       this.jobs = [
         {
-          id: 'release-openshift-ocp-installer-e2e-aws-4.1',
-          title: 'release-openshift-ocp-installer-e2e-aws-4.1'
+          id: 'release-openshift-ocp-installer-e2e-aws-4.4',
+          title: 'release-openshift-ocp-installer-e2e-aws-4.4'
         }
       ]
     },
