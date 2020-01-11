@@ -30,22 +30,19 @@
             <JobRunTestStatus
               v-for="(err, idx) in infraErrors"
               :key="idx"
-              :index="err.idx"
+              :index="[err.idx]"
               :total="job_info.length"
               :message="err.infra_failure"
-              success=false
              />
             <b-tr>
               <b-td><b>Failed tests</b></b-td>
-              <b-td colspan="job_info.length - 1">&nbsp;</b-td>
             </b-tr>
             <JobRunTestStatus
               v-for="(err, idx) in failedTests"
               :key="idx"
               :index="err.idx"
               :total="job_info.length"
-              :message="err.message"
-              success=false
+              :message="err.testName"
              />
           </b-tbody>
         </b-table-simple>
@@ -66,13 +63,38 @@ export default {
     infraErrors() {
       var result = []
       this.job_info.map(function(v, idx){
-        if (v.success == false) {
+        if ((v.success == false) && (v.infra_failure != "")) {
           result.push({
             idx: idx,
             infra_failure: v.infra_failure
           })
         }
       })
+      return result
+    },
+    failedTests() {
+      var result = []
+      var failed_test_list = new Set([])
+      /* Get a unique list of failed tests */
+      this.job_info.map(function(v){
+        if ((v.success == false) && (v.failed_tests != null)) {
+          v.failed_tests.forEach(function(t){
+            failed_test_list.add(t)
+          })
+        }
+      })
+      /* Return a list of tests and indexes of failed jobs */
+      failed_test_list.forEach(function(t) {
+        var indexes = this.job_info.map(function(v, idx) {
+          if ((v.failed_tests != null) && (v.failed_tests.includes(t))) {
+            return idx
+          }
+        })
+        result.push({
+          idx: indexes,
+          testName: t
+        })
+      }, this)
       return result
     }
   },

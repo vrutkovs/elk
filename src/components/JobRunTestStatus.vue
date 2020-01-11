@@ -3,7 +3,7 @@
     <b-td>{{ message }}</b-td>
     <b-td
       v-for="n in this.total"
-      :variant="n == index+1 ? 'danger' : 'success'"
+      :variant="index.includes(n-1) ? 'danger' : 'success'"
       :key="n">&nbsp;</b-td>
   </b-tr>
 </template>
@@ -12,9 +12,8 @@ export default {
   name: 'JobRunTestStatus',
   props: {
     message: String,
-    index: Number,
-    total: Number,
-    success: Boolean
+    index: Array,
+    total: Number
   }
 }
 </script>
