@@ -42,6 +42,12 @@ export default {
         }, {
           id: "group-4.2-jobs",
           title: "4.2 jobs"
+        }, {
+          id: "group-4.3-jobs",
+          title: "4.3 jobs"
+        }, {
+          id: "group-4.4-jobs",
+          title: "4.4 jobs"
         }]
     }
   },
@@ -56,12 +62,38 @@ export default {
   },
   methods: {
     onGroupSelected: function (id) {
-      this.jobs = [
-        {
-          id: 'release-openshift-ocp-installer-e2e-aws-4.4',
-          title: 'release-openshift-ocp-installer-e2e-aws-4.4'
-        }
-      ]
+      if (id == "group-4.1-jobs") {
+        this.jobs = [
+          {
+            id: 'release-openshift-ocp-installer-e2e-aws-4.1',
+            title: 'release-openshift-ocp-installer-e2e-aws-4.1'
+          }
+        ]
+      }
+      if (id == "group-4.2-jobs") {
+        this.jobs = [
+          {
+            id: 'release-openshift-ocp-installer-e2e-aws-4.2',
+            title: 'release-openshift-ocp-installer-e2e-aws-4.2'
+          }
+        ]
+      }
+      if (id == "group-4.3-jobs") {
+        this.jobs = [
+          {
+            id: 'release-openshift-ocp-installer-e2e-aws-4.3',
+            title: 'release-openshift-ocp-installer-e2e-aws-4.3'
+          }
+        ]
+      }
+      if (id == "group-4.4-jobs") {
+        this.jobs = [
+          {
+            id: 'release-openshift-ocp-installer-e2e-aws-4.4',
+            title: 'release-openshift-ocp-installer-e2e-aws-4.4'
+          }
+        ]
+      }
     },
     onJobSelected: function (id) {
       this.$emit('job-selected', id)
