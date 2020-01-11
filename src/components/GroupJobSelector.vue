@@ -2,7 +2,7 @@
   <div>
     <b-row>
       <b-button-group>
-        <Group
+        <GroupButton
           v-for="(grp, idx) in groups"
           v-bind:key="idx"
           v-bind:id="grp.id"
@@ -13,7 +13,7 @@
     </b-row>
     <b-row>
       <b-button-group>
-        <Job
+        <JobButton
           v-for="(jb, idx) in jobs"
           v-bind:key="idx"
           v-bind:id="jb.id"
@@ -26,8 +26,8 @@
   </div>
 </template>
 <script>
-import Group from './Group.vue'
-import Job from './Job.vue'
+import GroupButton from './GroupButton.vue'
+import JobButton from './JobButton.vue'
 
 export default {
   name: 'GroupJobSelector',
@@ -51,8 +51,8 @@ export default {
     }
   },
   components: {
-    Group,
-    Job
+    GroupButton,
+    JobButton
   },
   methods: {
     onGroupSelected: function (id) {
