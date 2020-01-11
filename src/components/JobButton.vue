@@ -1,8 +1,8 @@
 <template>
   <div>
     <b-button
-      v-on:click="$emit('job-selected', id)"
       :pressed.sync="pressed"
+      :to="`/job/${id}`"
       variant="secondary"
     >{{ title }}</b-button>
   </div>
@@ -13,6 +13,7 @@ export default {
   props: {
     id: String,
     title: String,
+    groupid: String,
     pressed: Boolean
   }
 }

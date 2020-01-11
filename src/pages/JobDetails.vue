@@ -14,7 +14,6 @@
             v-bind:key="idx"
             v-bind:id="jb.id"
             v-bind:success="jb.success"
-            v-on:job-run-selected="onJobRunSelected"
           />
         </b-button-group>
       </div>
@@ -22,12 +21,14 @@
   </div>
 </template>
 <script>
-import JobRunButton from './JobRunButton.vue'
+import JobRunButton from '../components/JobRunButton.vue'
 
 export default {
   name: 'JobDetails',
-  props: {
-    id: String,
+  computed: {
+    jobid() {
+      return this.$route.params.jobid
+    },
   },
   data(){
     return {
@@ -38,10 +39,10 @@ export default {
   },
   mounted() {
     this.axios
-      .get('http://localhost:3000/job/'+this.id)
+      .get('http://localhost:3000/job/'+this.jobid)
       .then(response => {
         response.data.forEach(v => {
-          var url = 'http://localhost:3000/job/'+this.id+'/'+v
+          var url = 'http://localhost:3000/job/'+this.jobid+'/'+v
           this.axios
             .get(url)
             .then(response => {
@@ -57,12 +58,6 @@ export default {
       .finally(() => {
         this.loading = false
       })
-  },
-  methods: {
-    onJobRunSelected: function (id) {
-      /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
-      console.warn("jobdetails: job '" + this.id + "#" + id + "' selected")
-    },
   },
   components: {
     JobRunButton

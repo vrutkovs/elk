@@ -1,7 +1,7 @@
 <template>
   <b-button
-    v-on:click="$emit('group-selected', id)"
     :pressed.sync="pressed"
+    :to="`/group/${id}`"
     variant="primary"
   >{{ title }}</b-button>
 </template>

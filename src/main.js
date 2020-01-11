@@ -13,9 +13,33 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios)
 
+/* Vue settings */
 Vue.config.productionTip = false
 
-import App from './App.vue'
+/* Vue Router */
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
+
+import App from "./App.vue";
+
+const router = new VueRouter({
+  mode: 'history',
+  routes: [
+    {
+      path: '/',
+    }, {
+      path: '/group/:groupid',
+    }, {
+      path: '/job/:jobid',
+      component: () => import("@/pages/JobDetails.vue"),
+    }, {
+      path: '/job/:jobid/:runid',
+      component: () => import("@/pages/JobRunDetails.vue"),
+    }
+  ]
+})
+
 new Vue({
-  render: h => h(App),
+  router,
+  render: h => h(App)
 }).$mount('#app')
