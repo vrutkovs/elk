@@ -8,12 +8,13 @@
       <div v-if="loading">Loading...</div>
 
       <div v-else>
-        <b-button-group vertical>
+        <b-button-group>
           <JobRunButton
             v-for="(jb, idx) in job_info"
-            v-bind:key="idx"
-            v-bind:id="jb.id"
-            v-bind:success="jb.success"
+            :key="idx"
+            :runid="jb.id"
+            :jobid="jobid"
+            :success="jb.success"
           />
         </b-button-group>
       </div>
