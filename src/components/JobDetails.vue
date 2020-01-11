@@ -7,18 +7,21 @@
     <section v-else>
       <div v-if="loading">Loading...</div>
 
-      <div
-        v-else
-      >
-        Job ID {{ id }}
-
-        {{ info }}
+      <div v-else>
+        <JobRunButton
+          v-for="(jb, idx) in job_info"
+          v-bind:key="idx"
+          v-bind:id="jb.id"
+          v-bind:success="jb.success"
+          v-on:job-run-selected="onJobRunSelected"
+        />
       </div>
-
     </section>
   </div>
 </template>
 <script>
+import JobRunButton from './JobRunButton.vue'
+
 export default {
   name: 'JobDetails',
   props: {
@@ -26,24 +29,43 @@ export default {
   },
   data(){
     return {
-      info: null,
+      job_info: [],
       loading: true,
       errored: false
     }
   },
   mounted() {
     this.axios
-      /* .get('http://localhost:3000/job/'+this.id+'') */
-      .get('http://localhost:3000/job/'+this.id+'/544')
+      .get('http://localhost:3000/job/'+this.id)
       .then(response => {
-        this.info = response.data
+        response.data.forEach(v => {
+          var url = 'http://localhost:3000/job/'+this.id+'/'+v
+          /* eslint no-console: ["error", { allow: ["warn"] }] */
+          console.warn("Fetching " + url)
+          this.axios
+            .get(url)
+            .then(response => {
+              this.job_info.push(response.data)
+          })
+        }, this)
       })
       .catch(error => {
         /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
         console.warn(error)
         this.errored = true
       })
-      .finally(() => this.loading = false)
+      .finally(() => {
+        this.loading = false
+      })
+  },
+  methods: {
+    onJobRunSelected: function (id) {
+      /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
+      console.warn("jobdetails: job '" + this.id + "#" + id + "' selected")
+    },
+  },
+  components: {
+    JobRunButton
   }
 }
 </script>
