@@ -5,38 +5,57 @@
     </section>
 
     <section v-else>
-      <div v-if="loading">...</div>
+      <section v-if="loading">
+        <div class="text-center text-danger my-2">
+          <b-spinner class="align-middle"></b-spinner>
+          <strong>Loading...</strong>
+        </div>
+      </section>
 
-      <b-table-simple v-else>
-        <b-thead>
-          <b-tr>
-            <b-th>Root Cause</b-th>
-            <JobRunButton
-              v-for="(jb, idx) in job_info"
+      <section v-else>
+        <b-table-simple>
+          <b-thead>
+            <b-tr>
+              <b-th>Infra failures</b-th>
+              <JobRunButton
+                v-for="(jb, idx) in job_info"
+                :key="idx"
+                :runid="jb.id"
+                :jobid="jobid"
+                :success="jb.success"
+              />
+            </b-tr>
+          </b-thead>
+          <b-tbody>
+            <JobRunTestStatus
+              v-for="(err, idx) in infraErrors"
               :key="idx"
-              :runid="jb.id"
-              :jobid="jobid"
-              :success="jb.success"
-            />
-          </b-tr>
-        </b-thead>
-        <b-tbody>
-          <JobRunRCARow
-            v-for="(err, idx) in infraErrors"
-            :key="idx"
-            :index="err.idx"
-            :total="job_info.length"
-            :infra_failure="err.infra_failure"
-            success=false
-           />
-        </b-tbody>
-      </b-table-simple>
+              :index="err.idx"
+              :total="job_info.length"
+              :message="err.infra_failure"
+              success=false
+             />
+            <b-tr>
+              <b-td><b>Failed tests</b></b-td>
+              <b-td colspan="job_info.length - 1">&nbsp;</b-td>
+            </b-tr>
+            <JobRunTestStatus
+              v-for="(err, idx) in failedTests"
+              :key="idx"
+              :index="err.idx"
+              :total="job_info.length"
+              :message="err.message"
+              success=false
+             />
+          </b-tbody>
+        </b-table-simple>
+      </section>
     </section>
   </div>
 </template>
 <script>
 import JobRunButton from '../components/JobRunButton.vue'
-import JobRunRCARow from '../components/JobRunRCARow.vue'
+import JobRunTestStatus from '../components/JobRunTestStatus.vue'
 
 export default {
   name: 'JobDetails',
@@ -88,7 +107,7 @@ export default {
   },
   components: {
     JobRunButton,
-    JobRunRCARow
+    JobRunTestStatus
   }
 }
 </script>

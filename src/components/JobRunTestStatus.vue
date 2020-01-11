@@ -1,16 +1,17 @@
 <template>
-  <b-tr variant="danger">
-    <b-td>{{ infra_failure }}</b-td>
+  <b-tr>
+    <b-td>{{ message }}</b-td>
     <b-td
       v-for="n in this.total"
-      :key="n">{{ n == index+1 ? "x" : "&nbsp;"}}</b-td>
+      :variant="n == index+1 ? 'danger' : 'success'"
+      :key="n">&nbsp;</b-td>
   </b-tr>
 </template>
 <script>
 export default {
-  name: 'JobRunRCARow',
+  name: 'JobRunTestStatus',
   props: {
-    infra_failure: String,
+    message: String,
     index: Number,
     total: Number,
     success: Boolean
