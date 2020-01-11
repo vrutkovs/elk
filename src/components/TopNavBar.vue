@@ -47,6 +47,10 @@ const realGroupJobs = [
   {
     "id": "release-openshift-origin-installer-e2e-aws-sdn-network-stress-4.4",
     "title": "release-openshift-origin-installer-e2e-aws-sdn-network-stress-4.4"
+  },
+  {
+    "id": "release-openshift-origin-installer-e2e-azure-compact-4.3",
+    "title": "release-openshift-origin-installer-e2e-azure-compact-4.3"
   }
 ]
 
