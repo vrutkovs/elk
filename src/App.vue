@@ -1,31 +1,40 @@
 <template>
   <div id="app">
     <b-container class="bv-example-row">
-      <!-- TODO: make groups API in antelope -->
       <b-row>
-        <GroupList/>
-      </b-row>
-      <!-- <b-row>
-        <b-col>release-openshift-origin-installer-e2e-aws-upgrade-4.1</b-col>
-        <b-col>release-openshift-ocp-installer-e2e-aws-upi-4.2</b-col>
-        <b-col>release-openshift-ocp-installer-e2e-openstack-4.3</b-col>
+        <GroupJobSelector
+          v-on:job-selected="onJobSelected"/>
       </b-row>
       <b-row>
-        <b-col>release-openshift-origin-installer-e2e-aws-upgrade-4.1</b-col>
-        <b-col>release-openshift-ocp-installer-e2e-aws-upi-4.2</b-col>
-        <b-col>release-openshift-ocp-installer-e2e-openstack-4.3</b-col>
-      </b-row> -->
+        <JobDetails
+          v-bind:id="id"
+          v-if="id"/>
+      </b-row>
     </b-container>
   </div>
 </template>
 
 <script>
-import GroupList from './components/GroupList.vue'
+import GroupJobSelector from './components/GroupJobSelector.vue'
+import JobDetails from './components/JobDetails.vue'
 
 export default {
   name: 'app',
   components: {
-    GroupList
+    GroupJobSelector,
+    JobDetails
+  },
+  data() {
+    return {
+      id: null
+    }
+  },
+  methods: {
+    onJobSelected: function (id) {
+      /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
+      console.warn("app: job '" + id + "' selected")
+      this.id = id
+    }
   }
 }
 </script>
@@ -35,8 +44,7 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 10px;
 }
 </style>
