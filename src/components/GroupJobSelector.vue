@@ -60,8 +60,8 @@ export default {
       console.warn("Group '" + id + "' selected")
       this.jobs = [
         {
-          id: 'job-1',
-          title: 'Job 1'
+          id: 'release-openshift-ocp-installer-e2e-aws-4.1',
+          title: 'release-openshift-ocp-installer-e2e-aws-4.1'
         }
       ]
     },
