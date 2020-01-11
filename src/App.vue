@@ -1,17 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <b-container class="bv-example-row">
+      <!-- TODO: make groups API in antelope -->
+      <b-row>
+        <GroupList/>
+      </b-row>
+      <!-- <b-row>
+        <b-col>release-openshift-origin-installer-e2e-aws-upgrade-4.1</b-col>
+        <b-col>release-openshift-ocp-installer-e2e-aws-upi-4.2</b-col>
+        <b-col>release-openshift-ocp-installer-e2e-openstack-4.3</b-col>
+      </b-row>
+      <b-row>
+        <b-col>release-openshift-origin-installer-e2e-aws-upgrade-4.1</b-col>
+        <b-col>release-openshift-ocp-installer-e2e-aws-upi-4.2</b-col>
+        <b-col>release-openshift-ocp-installer-e2e-openstack-4.3</b-col>
+      </b-row> -->
+    </b-container>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import GroupList from './components/GroupList.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    GroupList
   }
 }
 </script>
