@@ -12,7 +12,7 @@ spec:
     name: elk
     weight: 100
   port:
-    targetPort: 3000
+    targetPort: 8080
   tls:
     termination: edge
     insecureEdgeTerminationPolicy: Redirect
