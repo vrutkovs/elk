@@ -1,9 +1,10 @@
 # build stage
 FROM registry.access.redhat.com/ubi8/nodejs-10 as build-stage
 WORKDIR /app
-COPY package*.json ./
+USER root
+COPY --chown=1001:1001 package*.json ./
 RUN npm install
-COPY . .
+COPY --chown=1001:1001 . .
 RUN npm run build
 
 # production stage
