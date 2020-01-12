@@ -112,7 +112,7 @@ export default {
       .get(api + 'api/job/'+this.jobid)
       .then(response => {
         response.data.forEach(v => {
-          var url = api + '/job/'+this.jobid+'/'+v
+          var url = api + 'api/job/'+this.jobid+'/'+v
           this.axios
             .get(url)
             .then(response => {
