@@ -13,7 +13,6 @@ jobs:
         image: vrutkovs/elk
         tag: ${{ steps.extract_branch.outputs.branch }}
         registry: quay.io
-        dockerfile: Dockerfile
         username: vrutkovs
         password: ${{ secrets.DOCKER_PASSWORD }}
       if: github.event_name == 'push'
