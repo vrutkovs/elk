@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-button
-      :pressed.sync="pressed"
+      :pressed="pressed"
       :to="`/job/${id}`"
       variant="secondary"
     >{{ title }}</b-button>

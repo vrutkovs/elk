@@ -1,6 +1,6 @@
 <template>
   <b-button
-    :pressed.sync="pressed"
+    :pressed="pressed"
     :to="`/group/${id}`"
     variant="primary"
   >{{ title }}</b-button>
