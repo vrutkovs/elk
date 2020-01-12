@@ -54,6 +54,8 @@
 import JobRunButton from '../components/JobRunButton.vue'
 import JobRunTestStatus from '../components/JobRunTestStatus.vue'
 
+const api = process.env.API_BASEURL || 'http://localhost:3000'
+
 export default {
   name: 'JobDetails',
   computed: {
@@ -107,10 +109,10 @@ export default {
   },
   mounted() {
     this.axios
-      .get('http://localhost:3000/job/'+this.jobid)
+      .get(api + '/job/'+this.jobid)
       .then(response => {
         response.data.forEach(v => {
-          var url = 'http://localhost:3000/job/'+this.jobid+'/'+v
+          var url = api + '/job/'+this.jobid+'/'+v
           this.axios
             .get(url)
             .then(response => {
