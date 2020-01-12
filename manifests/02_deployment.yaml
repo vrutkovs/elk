@@ -29,6 +29,9 @@ spec:
         - image: "quay.io/vrutkovs/elk:master"
           imagePullPolicy: Always
           name: elk
+          env:
+          - name: NODE_ENV
+            value: 'production'
           ports:
             - containerPort: 8080
               protocol: TCP
