@@ -18,7 +18,7 @@
             <b-tr>
               <b-th>Infra failures</b-th>
               <JobRunButton
-                v-for="(jb, idx) in job_info"
+                v-for="(jb, idx) in sortedJobInfo"
                 :key="idx"
                 :runid="jb.id"
                 :jobid="jobid"
@@ -61,6 +61,10 @@ export default {
   computed: {
     jobid() {
       return this.$route.params.jobid
+    },
+    sortedJobInfo() {
+      var job_info_copy = this.job_info
+      return job_info_copy.sort(function(a, b) { return b.id - a.id })
     },
     infraErrors() {
       var result = []
