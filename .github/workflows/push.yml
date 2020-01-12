@@ -1,0 +1,19 @@
+name: CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF##*/})"
+      id: extract_branch
+    - uses: mr-smithers-excellent/docker-build-push@v1.0
+      with:
+        image: vrutkovs/elk
+        tag: ${{ steps.extract_branch.outputs.branch }}
+        registry: quay.io
+        dockerfile: Dockerfile
+        username: vrutkovs
+        password: ${{ secrets.DOCKER_PASSWORD }}
+      if: github.event_name == 'push'
